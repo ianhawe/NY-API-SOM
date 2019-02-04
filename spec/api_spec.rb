@@ -1,9 +1,10 @@
 require_relative 'spec_helper'
 
+# This will run tests about the API.
 describe 'NY Movies API' do
   before(:all) do
    @api_data = NYMovies.new.ny_api_data
-   @api_data.retrieve_api("gladiator",ENV['API_KEY'])
+   @api_data.retrieve_api('gladiator',ENV['API_KEY'])
   end
   context 'Testing Data from different outputs of the API' do
     it 'Testing whether or not the date returns a String' do

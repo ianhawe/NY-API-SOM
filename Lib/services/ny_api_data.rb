@@ -3,7 +3,7 @@ require 'json'
 require 'dotenv'
 Dotenv.load('ny_project/.env')
 
-# This class will hold api data
+# This class will hold api data and different data from the API.
 class NYAPIData
   include HTTParty
   base_uri 'https://api.nytimes.com/svc/movies/v2'
@@ -19,14 +19,15 @@ class NYAPIData
   def retrieve_publication_date_data
     date_array = []
     retrieve_api_data.each do |result|
-    date_array << result['publication_date']
-  end
+      date_array << result['publication_date']
+    end
     date_array
   end
 
   def amount_of_entries
     @json_data['results'].length
   end
+
   def retrieve_title_data
     title_array = []
     retrieve_api_data.each do |result|
@@ -37,17 +38,9 @@ class NYAPIData
 
   def retrieve_mppa_rating_data
     rating_array = []
-    retrieve_api_data.each do |result|
+    retrieve_api_data.each do |result| 
       rating_array << result['mpaa_rating']
     end
     rating_array
   end
 end
-# p ny_key = ENV['API_KEY']
-# bob = NYAPIData.new
-# bob.retrieve_api('gladiator', ny_key)
-
-# p bob.retrieve_publication_date_data
-# p bob.amount_of_entries
-# p bob.retrieve_title_data
-# p bob.retrieve_publication_date_data
